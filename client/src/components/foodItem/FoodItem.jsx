@@ -2,11 +2,11 @@ import React from "react";
 import "./FoodItem.css";
 import { assets } from "../../assets/assets";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../redux/foodSlice";
+import { addToCart, removeFromCart } from "../../redux/cartSlice";
 
 const FoodItem = ({ id, name, description, price, image }) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((store) => store.food.cartItems);
+  const cartItems = useSelector((store) => store.cart.cartItems);
 
   const handleAddToCart = () => {
     dispatch(addToCart(id));
