@@ -8,7 +8,6 @@ import FoodItem from "../foodItem/FoodItem";
 const FoodDisplay = ({ category }) => {
   const dispatch = useDispatch();
   const { food } = useSelector((store) => store.food);
-  console.log(food);
 
   useEffect(() => {
     dispatch(setFood(food_list));
