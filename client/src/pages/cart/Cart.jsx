@@ -3,12 +3,14 @@ import "./Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { deleteFromCart, getTotalCartAmount } from "../../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { food } = useSelector((store) => store.food);
   const { cartItems } = useSelector((store) => store.cart);
   const totalCartAmount = useSelector(getTotalCartAmount);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="cart">
@@ -56,15 +58,17 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>$2</p>
+              <p>${totalCartAmount === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${totalCartAmount + 2}</b>{" "}
+              <b>${totalCartAmount === 0 ? 0 : totalCartAmount + 2}</b>{" "}
             </div>
           </div>
-          <button>PROCEED TO CHECKOUT</button>
+          <button onClick={() => navigate("/order")}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
         <div className="cart-promocode">
           <div>
